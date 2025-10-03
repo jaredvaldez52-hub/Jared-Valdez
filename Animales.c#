@@ -1,0 +1,112 @@
+using System;
+
+namespace Animales
+{
+    public abstract class Animal
+    {
+        public abstract string Descripcion();
+        public abstract string Clasificacion();
+    }
+
+    public class Mamifero : Animal
+    {
+        public override string Descripcion()
+        {
+            return "Animal de sangre caliente que amamanta a sus crías";
+        }
+
+        public override string Clasificacion()
+        {
+            int a = 10;
+            int b = 2;
+            int multiplicacion = a * b;
+            return "Mamífero | Operación: " + a + " × " + b + " = " + multiplicacion;
+        }
+    }
+
+    public class Reptil : Animal
+    {
+        public override string Descripcion()
+        {
+            return "Animal de sangre fría que posee escamas";
+        }
+
+        public override string Clasificacion()
+        {
+            int a = 15;
+            int b = 5;
+            int division = a / b;
+            return "Reptil | Operación: " + a + " ÷ " + b + " = " + division;
+        }
+    }
+
+    public class Anfibio : Animal
+    {
+        public override string Descripcion()
+        {
+            return "Animal que puede vivir tanto en agua como en tierra";
+        }
+
+        public override string Clasificacion()
+        {
+            int a = 8;
+            int b = 3;
+            int suma = a + b;
+            return "Anfibio | Operación: " + a + " + " + b + " = " + suma;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("=== SISTEMA DE CLASIFICACIÓN DE ANIMALES ===");
+
+            bool continuar = true;
+
+            while (continuar)
+            {
+                Console.WriteLine("\nSeleccione el tipo de animal:");
+                Console.WriteLine("1. Mamífero");
+                Console.WriteLine("2. Reptil");
+                Console.WriteLine("3. Anfibio");
+                Console.WriteLine("4. Salir");
+                Console.Write("Ingrese su opción (1-4): ");
+
+                string opcion = Console.ReadLine();
+
+                Animal animal = null;
+
+                switch (opcion)
+                {
+                    case "1":
+                        animal = new Mamifero();
+                        break;
+                    case "2":
+                        animal = new Reptil();
+                        break;
+                    case "3":
+                        animal = new Anfibio();
+                        break;
+                    case "4":
+                        continuar = false;
+                        Console.WriteLine("¡Hasta luego!");
+                        break;
+                    default:
+                        Console.WriteLine("Opción no válida. Intente nuevamente.");
+                        break;
+                }
+
+                if (animal != null)
+                {
+                    Console.WriteLine("\n--- INFORMACIÓN DEL ANIMAL ---");
+                    Console.WriteLine("Descripción: " + animal.Descripcion());
+                    Console.WriteLine("Clasificación: " + animal.Clasificacion());
+                }
+            }
+
+            Console.WriteLine("\nPresione cualquier tecla para salir...");
+            Console.ReadKey();
+        }
+    }
+}
